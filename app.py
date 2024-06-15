@@ -17,15 +17,18 @@ chart = st.line_chart([0.5])
 
 def toss_coin(n):
     trial_outcomes = scipy.stats.bernoulli.rvs(p=0.5, size=n)
-
+    tails = 0
+    heads = 0
     mean = None
     outcome_no =  0
     outcome_1_count = 0
 
     for r in trial_outcomes:
         outcome_no += 1
+        tails += 1
         if r == 1:
             outcome_1_count += 1
+            heads += 1
         mean = outcome_1_count / outcome_no
         chart.add_rows([mean])
         time.sleep(0.05)
