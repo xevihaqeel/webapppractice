@@ -14,8 +14,7 @@ if 'df_experiment_results' not in st.session_state:
 st.header('Tossing a Coin')
 
 chart = st.line_chart([0.5])
-tails = 0
-heads = 0
+
 def toss_coin(n):
     trial_outcomes = scipy.stats.bernoulli.rvs(p=0.5, size=n)
    
@@ -25,10 +24,8 @@ def toss_coin(n):
 
     for r in trial_outcomes:
         outcome_no += 1
-        tails += 1
         if r == 1:
             outcome_1_count += 1
-            heads += 1
         mean = outcome_1_count / outcome_no
         chart.add_rows([mean])
         time.sleep(0.05)
@@ -52,5 +49,3 @@ if start_button:
     st.session_state['df_experiment_results'] = st.session_state['df_experiment_results'].reset_index(drop=True)
 
 st.write(st.session_state['df_experiment_results'])
-st.write(f'Number of heads: {heads}')
-st.write(f'Number of tails: {tails}')
